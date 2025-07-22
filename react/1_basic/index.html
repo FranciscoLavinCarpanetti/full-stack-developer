@@ -21,12 +21,38 @@
         filter: grayscale(100%);
       }
     </style>
+      <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
+      <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   </head>
   <body>
     <h1>Welcome to woman</h1>
     <div id="app"></div>
     <script>
+      // Este es un componente React simple que renderiza un avatar con una imagen y un nombre.
+      // Utiliza el método React.createElement para crear el componente y renderizarlo en la app.
       const app = document.getElementById('app');
+      const h = React.createElement;
+      const Avatar = params => {
+        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+        return h("img", {src});
+      };
+      ReactDOM.render(
+        h(
+          "div",
+          null,
+          h(Avatar, {id: 5}),
+          h(Avatar, {id: 2}),
+          h(Avatar, {id: 3}),
+          h(Avatar, {id: 4}),
+          h(Avatar, {id: 1}),
+          h(Avatar, {id: 6}),
+          h(Avatar, {id: 7}),
+          h(Avatar, {id: 8})
+        ),
+        app
+      );
+
+      /*
       const Avatar = params => {
         const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
         return `<picture>
@@ -47,7 +73,7 @@
         img.addEventListener('click', () => {
           img.classList.toggle('disabled');
         });
-      });
+      });*/
     </script>
   </body>
 </html>
