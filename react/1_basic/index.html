@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>basic_react</title>
+    <style>
+      picture {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vh;
+      }
+      img {
+        box-shadow: 0 0 15px #999;
+        border-radius: 50%;
+        width: 100px;
+      }
+      img.disabled {
+        opacity: .3;
+        filter: grayscale(100%);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to woman</h1>
+    <div id="app"></div>
+    <script>
+      const app = document.getElementById('app');
+      const Avatar = params => {
+        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+        return `<picture>
+                  <img src="${src}" alt="retrato mujer"/>
+                  <em>${params.name}</em>
+                </picture>`;
+      };
+      app.innerHTML += Avatar({id: 5, name: 'Ana'});
+      app.innerHTML += Avatar({id: 2, name: 'María'});
+      app.innerHTML += Avatar({id: 3, name: 'Lucía'});
+      app.innerHTML += Avatar({id: 4, name: 'Laura'});
+      app.innerHTML += Avatar({id: 1, name: 'Carmen'});
+      app.innerHTML += Avatar({id: 6, name: 'Isabel'});
+      app.innerHTML += Avatar({id: 7, name: 'Elena'});
+      app.innerHTML += Avatar({id: 8, name: 'Sara'});
+
+      app.querySelectorAll("img").forEach(img => {
+        img.addEventListener('click', () => {
+          img.classList.toggle('disabled');
+        });
+      });
+    </script>
+  </body>
+</html>
