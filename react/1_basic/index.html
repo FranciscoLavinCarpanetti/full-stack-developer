@@ -23,21 +23,60 @@
     </style>
       <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
       <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   </head>
   <body>
     <h1>Welcome to woman</h1>
     <div id="app"></div>
-    <script>
+    <script type="text/babel">
       // Este es un componente React simple que renderiza un avatar con una imagen y un nombre.
       // Utiliza el método React.createElement para crear el componente y renderizarlo en la app.
       const app = document.getElementById('app');
       const h = React.createElement;
-      const Avatar = params => {
-        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
-        return h("img", {src});
+      const useState = React.useState;
+      const Avatar = props => {
+        const [enabled, setEnabled] = useState(true);
+        const src = `https://randomuser.me/api/portraits/women/${props.id}.jpg`;
+        //return h("img", {src});
+        return (
+          <picture>
+            <img
+              className={enabled ? '' : 'disabled'}
+              alt="retrato mujer"
+              onClick={() => setEnabled(!enabled)}
+              /*onClick={(event)=>{
+                event.target.classList.toggle('disabled');}
+              }*/
+              src={src}
+            />
+            <span>{props.name}</span>
+          </picture>
+        );
       };
       ReactDOM.render(
-        h(
+        <div className="avatars">
+          <Avatar id={5} name="Ana" /> 
+          <Avatar id={2} name="Lucia" /> 
+          <Avatar id={3} name="Paola"/>
+          <Avatar id={4} />
+          <Avatar id={1} />
+          <Avatar id={6} />
+          <Avatar id={7} />
+          <Avatar id={8} />
+          <Avatar id={9} />
+          <Avatar id={10} />
+        </div>,
+        app 
+      );
+
+
+
+
+
+
+
+
+        /*h(
           "div",
           null,
           h(Avatar, {id: 5}),
@@ -47,7 +86,9 @@
           h(Avatar, {id: 1}),
           h(Avatar, {id: 6}),
           h(Avatar, {id: 7}),
-          h(Avatar, {id: 8})
+          h(Avatar, {id: 8}),
+          h(Avatar, {id: 9}),
+          h(Avatar, {id: 10})
         ),
         app
       );
