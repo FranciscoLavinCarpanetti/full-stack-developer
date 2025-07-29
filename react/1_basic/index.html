@@ -20,6 +20,21 @@
         opacity: .3;
         filter: grayscale(100%);
       }
+      button {
+        padding: 30px;
+        margin: 30px;
+        border-radius: 50%;
+        border: none;
+        background-color: #999;
+        color: #fff;
+        cursor: pointer;
+        font-size: 2rem;
+        font-weight: bold;
+        transition: all .3s ease-in-out;
+      }
+      button:hover {
+        background-color: #666;
+      }
     </style>
       <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>  
       <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
@@ -115,6 +130,22 @@
           img.classList.toggle('disabled');
         });
       });*/
+      const counter = document.createElement('div');
+      counter.innerHTML = `
+        <button id="minus">-</button>
+        <span id="count">0</span>
+        <button id="plus">+</button>
+      `;
+      app.appendChild(counter);
+      counter.querySelector('#minus').addEventListener('click', () => {
+        counter.querySelector('#count').innerText = Number(counter.querySelector('#count').innerText) - 1;
+      });
+      counter.querySelector('#plus').addEventListener('click', () => {
+        counter.querySelector('#count').innerText = Number(counter.querySelector('#count').innerText) + 1;
+      });
+
+
+
     </script>
   </body>
 </html>
